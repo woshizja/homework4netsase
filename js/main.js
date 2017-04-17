@@ -68,6 +68,78 @@ var classesForClick = ["menu-drop-light", "delete-blog", "stick-blog", "edit-blo
 
 window.addEventListener("load", initPage);
 
+var blogDateManager = new BlogDateManager(blogData, latestBlogData);
+
+function BlogDateManager(blogData, latestBlogDate) {
+	this.data = blogData || {};
+	this.latest = latestBlogDate || {};
+
+	this.getLatesBlogs = function() {
+		return this.latest;
+	}
+
+	this.getBlogs = function() {
+		this.sortBlog();
+		return this.data;
+	}
+
+	this.deleteBlog = function(index) {
+		var len = this.data.length;
+		var isArray = index instanceof Array;
+		if (!isArray && parseInt(index) < len) {
+			// 删除单个博客
+			this.data.splice(index, 1);
+		} else if (!isArray) {
+			// 删除所有博客
+			this.data = [];
+		} else if (isArray) {
+			// 删除选中博客
+			var l = index.length;
+			while (l--) {
+				this.data[index[l]] = null;
+			}
+			this.data = this.data.filter(function(blog) {
+				return blog;
+			})
+		}
+	};
+
+	this.sortBlog = function() {
+		this.data.sort(function(pre, next) {
+			// 置顶的优先于未置顶的
+			if (next.rank !== pre.rank) {
+				return next.rank - pre.rank
+			}
+			// 按照时间排序
+			return next.modifyTime - pre.modifyTime;
+		});
+	};
+
+	this.stickBlog = function(index) {
+		var rank = this.data[index].rank;
+		this.data[index].rank = rank === 5 ? 0 : 5;
+	}
+
+	this.changeBlog = function(blog, index) {
+		if (index !== undefined) {
+			var ori = this.data[index];
+			this.data[index] = {
+				id: blog.id === undefined ? ori.id : blog.id,
+				title: blog.title === undefined ? ori.title : blog.title,
+				blogContent: blog.blogContent === undefined ? ori.blogContent : blog.blogContent,
+				allowView: blog.allowView === undefined ? ori.allowView : blog.allowView,
+				modifyTime: blog.modifyTime === undefined ? ori.modifyTime : blog.modifyTime,
+				accessCount: blog.accessCount === undefined ? ori.accessCount : blog.accessCount,
+				commentCount: blog.commentCount === undefined ? ori.commentCount : blog.commentCount,
+				rank: blog.rank === undefined ? ori.rank : blog.rank,
+				className: blog.className === undefined ? ori.className : blog.className,
+			};
+		} else {
+			this.data.unshift(blog);
+		}
+	};
+}
+
 /**
  * [initPage 初始化页面]
  * @return null
@@ -77,7 +149,7 @@ function initPage() {
 	latestBlogList = document.querySelector(".content .latest .blogs");
 	latestBlogArray = [0, 1, 2, 3, 4];
 
-	createBlogList(blogData); // 生成博客列表
+	createBlogList(blogDateManager.getBlogs()); // 生成博客列表
 	setGreeting(); // 设置问候语
 	updateLatestBlog(); // 开始更新博客
 
@@ -149,7 +221,7 @@ function clickDispatcher(target, classList) {
 					selectAllBlog(target.checked);
 					break;
 				case 5: // 删除所选博客
-					deleteSelectedBlog();
+					deleteBlog();
 					break;
 				case 6: // 发布博客
 					publicBlog(target);
@@ -221,7 +293,7 @@ function toggleLogAndTag(target, classList, callback) {
 		log.classList.add("hide");
 		tag.classList.remove("hide");
 		if (callback && callback instanceof Function) {
-			callback(blogData);
+			callback(blogDateManager.getBlogs());
 		}
 	}
 }
@@ -307,15 +379,19 @@ function addBlog() {
 	// 使用hash生成ID
 	var blogId = hashEncode(detail.innerText);
 	title.dataset.blogId = blogId;
+	var blog;
 	if (index >= 0) {
 		// 更新已有博客
-		blogData[index].id = blogId;
-		blogData[index].title = title.value;
-		blogData[index].blogContent = detail.innerText;
-		blogData[index].modifyTime = +new Date();
+		blog = {
+			id: blogId,
+			title: title.value,
+			blogContent: detail.innerText,
+			modifyTime: +new Date(),
+		};
 	} else {
 		// 新增博客
-		var blog = {
+		index = undefined;
+		blog = {
 			id: blogId,
 			title: title.value,
 			blogContent: detail.innerText,
@@ -325,41 +401,29 @@ function addBlog() {
 			commentCount: 0,
 			rank: 0
 		};
-		blogData.unshift(blog);
 	}
-	createBlogList(blogData);
+	blogDateManager.changeBlog(blog, index);
+	createBlogList(blogDateManager.getBlogs());
 }
 
 /**
- * [deleteSelectedBlog 删除选中的博客]
- * @return null
- */
-function deleteSelectedBlog() {
-	var blogs = document.querySelectorAll(".blog-item");
-	var len = blogs.length;
-	for (var i = 0; i < len; i++) {
-		if (blogs[i].children[0].checked) {
-			blogData[i] = null;
-		};
-	}
-	blogData = blogData.filter(function(blog) {
-		return blog;
-	});
-	createBlogList(blogData);
-}
-
-/**
- * [deleteBlog 删除单条博客]
+ * [deleteBlog 删除博客]
  * @param  {[type]} index
  * @return null
  */
 function deleteBlog(index) {
-	if (index >= 0) {
-		blogData.splice(index, 1);
-	} else {
-		blogData.splice(index);
+	if (index === undefined) {
+		index = [];
+		var blogs = document.querySelectorAll(".blog-item");
+		var len = blogs.length;
+		while (len--) {
+			if (blogs[len].children[0].checked) {
+				index.push(len);
+			}
+		}
 	}
-	createBlogList(blogData);
+	blogDateManager.deleteBlog(index);
+	createBlogList(blogDateManager.getBlogs());
 }
 
 /**
@@ -371,21 +435,20 @@ function stickBlog(index) {
 	if (index === undefined || index < 0) {
 		return;
 	}
-	var rank = blogData[index].rank;
-	blogData[index].rank = rank === 5 ? 0 : 5;
-	blogData.unshift(blogData.splice(index, 1)[0]);
-	createBlogList(blogData);
+	blogDateManager.stickBlog(index);
+	createBlogList(blogDateManager.getBlogs());
 }
 
 /**
  * [updateTitle 更新编辑区域的ID和index]
+ * @param  {[type]} dataset
  * @return null
  */
-function updateTitle() {
+function updateTitle(dataset) {
 	var title = document.querySelector(".publish .title");
 	var id = title.dataset.blogId;
 	var index_new;
-	var res = blogData.some(function(blog, index) {
+	var res = dataset.some(function(blog, index) {
 		index_new = index;
 		return blog.id == id;
 	});
@@ -403,8 +466,7 @@ function updateTitle() {
  * @return null
  */
 function createBlogList(dataset) {
-	sortBlog(dataset);
-	updateTitle(); // 每次创建列表都需要更新title以确保发布到正确的博客
+	updateTitle(dataset); // 每次创建列表都需要更新title以确保发布到正确的博客
 	var list = document.querySelector(".manage .list");
 	var len = dataset.length;
 	if (!len) {
@@ -477,22 +539,6 @@ function formatDateTime(date) {
 }
 
 /**
- * [sortBlog 对博客数据进行排序]
- * @param  {[array]} dataset
- * @return null
- */
-function sortBlog(dataset) {
-	dataset.sort(function(pre, next) {
-		// 置顶的优先于未置顶的
-		if (next.rank !== pre.rank) {
-			return next.rank - pre.rank
-		}
-		// 按照时间排序
-		return next.modifyTime - pre.modifyTime;
-	});
-}
-
-/**
  * [createTags 生成标签]
  * @param  {[type]} dataset
  * @return null
@@ -530,15 +576,12 @@ function createTags(dataset) {
  */
 function createLatestBlogList(dataset) {
 	latestBlogList.classList.remove("rolling");
-	var len = latestBlogArray.length;
-	var update_index = Math.floor(Math.random() * 5);
-	if (len === 6) {
-		// 清除最后一个博客
+	if (latestBlogArray.length === 6) {
 		latestBlogArray.pop();
 	}
-	// 在开头随机选择一个“新”博客
+	var update_index = latestBlogArray[latestBlogArray.length - 1];
 	latestBlogArray.unshift(update_index);
-	len = latestBlogArray.length;
+	var len = latestBlogArray.length;
 	var blogs = document.createDocumentFragment();
 	for (var i = 0; i < len; i++) {
 		var index = latestBlogArray[i];
@@ -566,7 +609,7 @@ function updateLatestBlog() {
 		latestBlogList.classList.add("rolling");
 		setTimeout(function() {
 			// 动画500ms，600ms后更新列表
-			createLatestBlogList(latestBlogData);
+			createLatestBlogList(blogDateManager.getLatesBlogs());
 		}, 600);
 		// 不断更新
 		setTimeout(updateLatestBlog, 2000);
