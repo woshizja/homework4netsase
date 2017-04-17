@@ -1,0 +1,911 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    color: #333;
+    background-color: #f7f7f7;
+}
+
+
+/**********head**********/
+
+.head {
+    position: relative;
+    box-sizing: border-box;
+    line-height: 24px;
+    padding: 3px 11.4% 0 11.4%;
+    margin: 0;
+    background-color: #f8f8f8;
+    font-size: 0;
+}
+
+.head ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+.head ul li {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 6px;
+    list-style: none;
+}
+
+.head ul li a {
+    color: #666;
+    font-size: 13px;
+    text-decoration-line: none;
+}
+
+.head ul li span {
+    color: #666;
+    font-size: 13px;
+}
+
+.head .nav-left {
+    float: left;
+}
+
+.head .nav-right {
+    float: right;
+}
+
+
+/*divide line*/
+
+.head ul li.divide_h {
+    height: 13px;
+    padding: 0;
+    border-right: 1px solid #ccc;
+    transform: translateY(2px);
+}
+
+
+/*mail*/
+
+.user-mail {
+    display: inline-block;
+}
+
+.user-mail .mail {
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    background: url('../images/blog_spirits.png') no-repeat 0 -41px;
+    vertical-align: middle;
+}
+
+.user-mail.active .mail {
+    background: url('../images/blog_spirits.png') no-repeat 0 -21px;
+}
+
+
+/*homepage*/
+
+.user-center {
+    display: inline-block;
+}
+
+.user-center .homepage {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../images/blog_spirits.png') no-repeat 0 -80px;
+    vertical-align: middle;
+}
+
+.user-center.active .homepage {
+    background: url('../images/blog_spirits.png') no-repeat 0 -60px;
+}
+
+.clear {
+    clear: both;
+}
+
+
+/*message*/
+
+.user-msg.active .count {
+    color: #f70;
+    font-weight: 600;
+}
+
+
+/******************************/
+
+
+/***********drop menu light***********/
+
+.menu-drop-light {
+    position: relative;
+    box-sizing: border-box;
+    width: 58px;
+    padding: 0 3px;
+    border: 1px solid transparent;
+    border-top: none;
+    background-color: #fff;
+    font-size: 12px;
+    cursor: default;
+}
+
+.menu-drop-light::after {
+    color: #a8a8a8;
+    font-size: 10px;
+    content: '\25BC';
+}
+
+.menu-drop-light.open {
+    border: 1px solid #c8d9e3;
+}
+
+.menu-drop-light .menu {
+    position: absolute;
+    top: 10px;
+    left: -1px;
+    display: none;
+    width: 100%;
+    padding: 0;
+    border: 1px solid #c8d9e3;
+    border-top: none;
+    background: #fff;
+}
+
+.menu-drop-light.open .menu {
+    display: inline-block;
+}
+
+.menu-drop-light.open .menu::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    content: '';
+}
+
+.menu-drop-light .menu li {
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 20px;
+    padding-left: 3px;
+    list-style: none;
+}
+
+.menu-drop-light .menu li:hover {
+    background-color: #ececec;
+}
+
+
+/******************************/
+
+
+/***********drop menu***********/
+
+.menu-drop {
+    position: relative;
+    color: #666;
+    border: 1px solid transparent;
+    font-size: 13px;
+    cursor: default;
+}
+
+.menu-drop::after {
+    color: #999;
+    font-size: 10px;
+    content: '\25BC';
+}
+
+.menu-drop:hover {
+    height: 27px;
+    color: #fff;
+    border: 1px solid #ccc;
+    background-color: #999;
+    font-size: 13px;
+}
+
+.menu-drop:hover::after {
+    color: #c9c9c9;
+    font-size: 10px;
+    content: '\25B2';
+}
+
+.menu-drop .menu {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    display: none;
+    box-sizing: border-box;
+    width: 62px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 0;
+}
+
+.menu-drop:hover .menu {
+    display: inline-block;
+}
+
+.menu-drop .menu li {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 29px;
+    line-height: 29px;
+    padding: 0 6px;
+    margin: 0;
+    font-size: 0;
+}
+
+.menu-drop .menu li:hover {
+    background-color: #999;
+}
+
+.menu-drop .menu li a {
+    font-size: 12px;
+}
+
+.menu-drop .menu li:hover a {
+    color: #fff;
+}
+
+
+/*********************************/
+
+
+/**********neck**********/
+
+.neck {
+    box-sizing: border-box;
+    height: 70px;
+    padding: 10px 11.4%;
+    color: #666;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #d8d8d8;
+}
+
+.neck .left {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    background-color: #ccc;
+}
+
+.neck .avatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url('../images/ava.jpg');
+    background-size: cover;
+}
+
+.neck .right {
+    height: 50px;
+    margin-left: 70px;
+}
+
+.neck .right .row {
+    line-height: 25px;
+}
+
+.neck .right .upload-pic {
+    width: 85px;
+    height: 25px;
+    color: #666;
+    border: 1px solid #b4b4b4;
+    border-radius: 3px;
+    outline: none;
+    background: -webkit-linear-gradient(top, #fff, #eee);
+    background: -moz-linear-gradient(top, #fff, #eee);
+    background: -ms-linear-gradient(top, #fff, #eee);
+    font-size: 13px;
+}
+
+
+/*********************************/
+
+
+/**********main content**********/
+
+.main {
+    margin: 10px 11.4%;
+    background-color: #fff;
+}
+
+.main .side {
+    float: left;
+    width: 143px;
+}
+
+.main .content {
+    padding: 0 20px;
+    margin: 10px 0 0 153px;
+    border: 1px solid #ccc;
+}
+
+
+/*********************************/
+
+
+/**********content**********/
+
+.content .title {
+    height: 58px;
+    line-height: 58px;
+    font-size: 20px;
+}
+
+.content .log {
+    position: relative;
+}
+
+
+/*********************************/
+
+
+/**********log**********/
+
+.log .manage {
+    min-height: 688px;
+    margin-right: 245px;
+}
+
+.log .latest {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 225px;
+    padding: 0;
+    border-radius: 3px;
+    background-color: #f7f7f7;
+}
+
+.manage .publish {
+    overflow: hidden;
+    padding: 8px;
+    margin: 10px 0;
+    background-color: #ececec;
+}
+
+.manage .tab-log.hide {
+    display: none;
+}
+
+.manage .tab-tag.hide {
+    display: none;
+}
+
+
+/*******************************/
+
+
+/***************tag***************/
+
+.manage .tab-tag {
+    position: relative;
+    /*min-height: 420px;*/
+    padding: 10px;
+}
+
+.manage .tab-tag.no-tag::after {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    color: #999;
+    font-size: 12px;
+    content: '没有标签，快去添加吧~';
+    transform: translateX(-50%);
+}
+
+.manage .tab-tag .tag-one {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 3px 10px;
+    margin: 10px;
+    color: #666;
+    border: 1px solid #ccc;
+    background: #f6f6f6;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration-line: none;
+}
+
+
+/*******************************/
+
+
+/************latest************/
+
+.latest .title {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.latest .blogs {
+    margin-top: -20px;
+}
+
+.latest .blogs.rolling {
+    transition: transform 500ms ease;
+    transform: translateY(50px);
+}
+
+.latest .log-item {
+    height: 40px;
+    margin: 10px 10px;
+}
+
+.latest .log-item .left {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: url('../images/ava.jpg') no-repeat;
+    background-color: #ccc;
+    background-size: cover;
+}
+
+.latest .log-item .right .row {
+    overflow: hidden;
+    max-width: 155px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.latest .log-item .right .row.one a {
+    color: #21759b;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration-line: none;
+}
+
+.latest .log-item .right .row.two {
+    color: #999;
+    font-size: 13px;
+}
+
+.latest .log-item.enter {
+    opacity: 0;
+    animation: enter ease 600ms 1 forwards;
+}
+
+@keyframes enter {
+    50% {
+        opacity: .5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/*******************************/
+
+
+/**********publish**********/
+
+.publish .title {
+    box-sizing: border-box;
+    width: 100%;
+    height: 23px;
+    padding: 0 10px;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: 13px;
+}
+
+.publish .title.wrong {
+    border: 1px solid #e95d5d;
+}
+
+.publish .title::-webkit-input-placeholder {
+    color: #333;
+}
+
+.publish .title::-moz-input-placeholder {
+    color: #333;
+}
+
+.publish .title::-ms-input-placeholder {
+    color: #333;
+}
+
+.publish .detail {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 94px;
+    padding: 10px;
+    margin: 5px 0;
+    color: #999;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 13px;
+}
+
+.publish .detail.wrong {
+    border: 1px solid #e95d5d;
+}
+
+.publish .operation {
+    float: right;
+    width: 52px;
+    height: 22px;
+    margin-left: 3px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    background: -webkit-linear-gradient(top, #fff, #eee);
+    background: -moz-linear-gradient(top, #fff, #eee);
+    background: -ms-linear-gradient(top, #fff, #eee);
+    font-size: 12px;
+}
+
+
+/*********************************/
+
+
+/*************list*************/
+
+.list .empty-tip {
+    height: 160px;
+    line-height: 160px;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+}
+
+.list .blog-item {
+    position: relative;
+    height: 46px;
+    padding: 0 10px;
+    border-bottom: 1px dashed #ccc;
+    font-size: 0;
+}
+
+.list input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.list input::after {
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    visibility: visible;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #1c5180;
+    content: '';
+}
+
+.list input:checked::before {
+    position: absolute;
+    top: 5px;
+    left: 12px;
+    visibility: visible;
+    width: 8px;
+    height: 8px;
+    background-color: #1c5180;
+    font-size: 12px;
+    content: '';
+}
+
+.blog-item .right {
+    height: 100%;
+    margin-left: 33px;
+}
+
+.blog-item .right .row {
+    height: 23px;
+    line-height: 23px;
+}
+
+.right .row .caption .left {
+    display: block;
+    float: left;
+    overflow: hidden;
+    max-width: 60%;
+    color: #21759b;
+    font-size: 12px;
+    cursor: default;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.right .row .caption span.private {
+    display: inline-block;
+    float: left;
+    width: 12px;
+    height: 12px;
+    margin-top: 5px;
+    background: url('../images/blog_spirits.png') no-repeat 0 -108px;
+    background-size: 100%;
+}
+
+.right .row .caption .option {
+    display: inline;
+    float: right;
+    margin-left: 15px;
+    color: #21759b;
+    font-size: 12px;
+    cursor: default;
+}
+
+.right .row .infos {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.right .row .infos span {
+    margin: 0 30px;
+    color: #999;
+    font-size: 12px;
+}
+
+.right .row .infos span:first-child {
+    margin-left: 0;
+}
+
+.list .select-all {
+    padding: 10px 0;
+    font-size: 0;
+}
+
+.list .select-all span {
+    margin: 0 10px 0 15px;
+    font-size: 12px;
+}
+
+.list .select-all input {
+    position: relative;
+    transform: translateY(-2px);
+    vertical-align: sub;
+}
+
+.list .select-all .delete-selected {
+    width: 44px;
+    height: 20px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    background: -webkit-linear-gradient(top, #fff, #eee);
+    background: -moz-linear-gradient(top, #fff, #eee);
+    background: -ms-linear-gradient(top, #fff, #eee);
+    font-size: 12px;
+}
+
+
+/*********************************/
+
+
+/**********labels**********/
+
+.labels {
+    font-size: 0;
+}
+
+.labels .label {
+    display: inline-block;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    color: #21759b;
+    border: 1px solid #bbb;
+    background-color: #f7f7f7;
+    font-size: 13px;
+    cursor: default;
+    text-align: center;
+}
+
+.labels .label:first-child {
+    border-right: none;
+}
+
+.labels .label.active {
+    color: #333;
+    border-bottom: none;
+    background-color: #fff;
+    cursor: auto;
+}
+
+.labels .line {
+    height: 1px;
+    padding-left: 180px;
+    background: #ccc;
+    background-clip: content-box;
+    transform: translateY(-1px);
+}
+
+
+/*********************************/
+
+
+/**********tab**********/
+
+.tab {
+    width: 100%;
+    margin: 0 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 0;
+}
+
+.tab .title {
+    height: 28px;
+    line-height: 26px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    background-color: #ececec;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tab .title .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 3px 0 4px;
+    background: url('../images/blog_spirits.png') no-repeat 0 0;
+    vertical-align: middle;
+}
+
+.tab .title .icon.state {
+    background: url('../images/blog_spirits.png') no-repeat 0 -100px;
+}
+
+.tab .title .icon.setting {
+    background: url('../images/blog_spirits.png') no-repeat 0 -160px;
+}
+
+.tab .title .icon.service {
+    background: url('../images/blog_spirits.png') no-repeat 0 0;
+}
+
+.tab .items {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+}
+
+.tab .items li {
+    height: 24px;
+    line-height: 24px;
+    padding-left: 30px;
+    margin: 0;
+    list-style: none;
+}
+
+.tab .items li.active {
+    background-color: #ececec;
+}
+
+.tab .items li:hover {
+    background-color: #ececec;
+}
+
+.tab .items li a {
+    color: #21759b;
+    text-decoration-line: none;
+}
+
+
+/*********************************/
+
+
+/*************foot*************/
+
+.foot {
+    height: 90px;
+    padding-top: 10px;
+    font-size: 0;
+    text-align: center;
+}
+
+.foot .row {
+    line-height: 22px;
+}
+
+.foot .row .foot-link {
+    position: relative;
+    display: inline-block;
+    color: #7b7b7b;
+    font-size: 12px;
+    text-decoration-line: none;
+}
+
+.foot .row .foot-link:nth-child(n+2)::before {
+    margin: 0 6px;
+    content: '-';
+}
+
+.foot .row .foot-link .sub {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin: 0 3px;
+    background: url(../images/blog_spirits.png) no-repeat 0 -130px;
+    background-size: cover;
+    vertical-align: sub;
+}
+
+
+/*********************************/
+
+
+/***************media***************/
+
+@media screen and (max-width:1280px) {
+    .head {
+        padding: 3px 5px 0 5px;
+    }
+    .main {
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width:960px) {
+    .head {
+        height: auto;
+        padding-top: 4px;
+    }
+    .head .nav-left {
+        float: left;
+        width: 100%;
+    }
+    .head .nav-right {
+        float: right;
+        width: 100%;
+    }
+    .main {
+        margin: 10px 10px;
+    }
+    .main .side {
+        float: none;
+        width: 100%;
+    }
+    .main .content {
+        padding: 0 20px;
+        margin: 10px 0 0 0;
+        border: 1px solid #ccc;
+    }
+    .log .manage {
+        min-height: 188px;
+        margin-right: 0;
+    }
+    .log .latest {
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+        border-radius: 3px;
+        background-color: #f7f7f7;
+    }
+    .right .row .infos span {
+        margin: 0 5px;
+        color: #999;
+        font-size: 10px;
+    }
+}
