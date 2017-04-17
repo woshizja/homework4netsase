@@ -1,6 +1,8 @@
 # homework4netsase
 homework（blog manage page） of netease.
 
+[demo](https://woshizja.github.io/homework4netsase/)
+
 ## 1. What Has Been Done?
 
 * Top drop-down menu(hover).
